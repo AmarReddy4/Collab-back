@@ -168,6 +168,14 @@ public class FriendDAOImpl implements FriendDAO
 		}
 	}
 
+	@Transactional
+	public List<Friend> getrequestlist(String uid) {
+		String hql = "from Friend where friendid='"+uid+"' and status='n'";
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		List<Friend> list = query.list();
+		return list;
+	}
+
 	/*@Override
 	public Friend newrequest(String id) {
 		// TODO Auto-generated method stub

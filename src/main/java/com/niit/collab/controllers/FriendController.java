@@ -47,6 +47,12 @@ public void sendrequest(@PathVariable("fid") String fid,HttpSession session)
 	friendDAO.save(friend);
 	/*return new ResponseEntity<Friend>(friend,HttpStatus.OK); */
 }
+@GetMapping(value="/newrequests")
+public ResponseEntity<List<Friend>> newrequests(HttpSession session){
+	String uid=(String) session.getAttribute("username");
+	List<Friend> list=friendDAO.getrequestlist(uid);
+	return new ResponseEntity<List<Friend>>(list,HttpStatus.OK);
+}
 
 /*@PostMapping("/sendrequest/{fid}")
 public void sendfrndrequest(@PathVariable("fid") String fid,HttpSession session)

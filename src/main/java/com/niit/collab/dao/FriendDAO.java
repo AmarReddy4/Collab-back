@@ -13,7 +13,7 @@ public interface FriendDAO
 	public Friend getFriend(String id);
 	public Friend newrequest(String id);
 	public Friend acceptfriend(String uid, String fid);
-	
+	public List<Friend> getrequestlist(String uid);
 	public List<Friend> list();
 	public List<Friend> getfriendlist(String uid);
 	public Friend UpdateStatus(String uid,String fid);
