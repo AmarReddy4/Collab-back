@@ -71,6 +71,7 @@ public SessionFactory getSessionFactory(DataSource dataSource){
 	sessionBuilder.addAnnotatedClass(Forum.class);
 	sessionBuilder.addAnnotatedClass(Job.class);
 	sessionBuilder.addAnnotatedClass(Friend.class);
+	sessionBuilder.addAnnotatedClass(Friend.class);
 	return sessionBuilder.buildSessionFactory();
 	
 }

@@ -25,9 +25,9 @@ public class ForumController {
 	ForumDAO forumDAO;
 	@PostMapping("/createforum")
 	public ResponseEntity<Forum> addforum(@RequestBody Forum forum,HttpSession session){
-	/*	int uid=(Integer)session.getAttribute("uid");
+		int uid=(Integer)session.getAttribute("uid");
 		forum.setDoc(new Date());
-		forum.setUserid(uid);*/
+		forum.setUserid(uid);
 		forumDAO.saveOrUpdate(forum);
 		return new ResponseEntity<Forum>(forum ,HttpStatus.OK);
 	}

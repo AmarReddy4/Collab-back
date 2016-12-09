@@ -1,4 +1,4 @@
-package com.niit.collab.dao;
+ package com.niit.collab.dao;
 
 import java.util.List;
 
