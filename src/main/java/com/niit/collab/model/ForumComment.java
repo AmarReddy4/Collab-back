@@ -18,27 +18,28 @@ public class ForumComment {
 	@Id
 	@GeneratedValue
 	private int id;
-	private int userid;
-	private int forumid;
+	private String userid;
+	private String forumid;
 	@Column(name="comments")
 	private String comment;
 	private Date commenttime;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
-	public int getForumid() {
+	public String getForumid() {
 		return forumid;
 	}
-	public void setForumid(int forumid) {
+	public void setForumid(String forumid) {
 		this.forumid = forumid;
 	}
 	public String getComment() {
@@ -53,6 +54,4 @@ public class ForumComment {
 	public void setCommenttime(Date commenttime) {
 		this.commenttime = commenttime;
 	}
-	
-	
 }

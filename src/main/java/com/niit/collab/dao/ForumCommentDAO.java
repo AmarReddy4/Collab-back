@@ -8,5 +8,5 @@ public interface ForumCommentDAO {
 
 	public boolean saveOrUpdate(ForumComment forumcomment);
 	public boolean delete(ForumComment forumcomment);
-	public List<ForumComment> list(int fid);
+	public List<ForumComment> list(String fid);
 }

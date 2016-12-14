@@ -25,7 +25,10 @@ public class Users {
 	private String address;
 	private Date dob;
 	private String gender;
-	private char Status;
+	private char status;
+	private byte[] image;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -81,10 +84,16 @@ public class Users {
 		this.gender = gender;
 	}
 	public char getStatus() {
-		return Status;
+		return status;
 	}
 	public void setStatus(char status) {
-		Status = status;
+		this.status = status;
+	}
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 	
 }

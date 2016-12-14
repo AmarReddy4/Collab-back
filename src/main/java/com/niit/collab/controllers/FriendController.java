@@ -21,15 +21,18 @@ import com.niit.collab.model.Users;
 
 @RestController
 public class FriendController {
+
 @Autowired
 private FriendDAO friendDAO;
+
 @Autowired
 private UsersDAO usersDAO;
+
 @Autowired
 private Friend friend;
+
 @Autowired
 HttpSession session;
-
 
 private Users users;
 

@@ -36,7 +36,7 @@ public class UsersDAOImpl implements UsersDAO
 	public boolean save(Users users) {
 
 		try {
-			sessionFactory.getCurrentSession().save(users);
+			sessionFactory.getCurrentSession().saveOrUpdate(users);
 
 			return true;
 		}
@@ -76,8 +76,21 @@ public class UsersDAOImpl implements UsersDAO
 
 	}
 
+	public boolean delete(Users users) {
+		try {
+			sessionFactory.getCurrentSession().delete(users);
+			return true;
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 	@Transactional
-	public Users validate(int id, String password)
+	public Users validate(String id, String password)
 
 	{
 
@@ -125,7 +138,7 @@ public class UsersDAOImpl implements UsersDAO
 	}
 
 	@Transactional
-	public List<Users> getuser(int id) {
+	public List<Users> getuser(String id) {
 
 		String hql = "from Users where id= " + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -149,6 +162,32 @@ public class UsersDAOImpl implements UsersDAO
 			return list.get(0);
 		}
 
+	}
+
+	@Transactional
+	public Users profileof(String username) {
+		String hql = "from Users where username='" + username + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users> list = query.list();
+
+		if (list == null) {
+			return null;
+		} else {
+			return list.get(0);
+		}
+	}
+
+	@Transactional
+	public Users oneuser(String id) {
+		String hql = "from Users where id= " + "'" + id + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users> list = query.list();
+
+		if (list == null) {
+			return null;
+		} else {
+			return list.get(0);
+		}
 	}
 
 	@Transactional

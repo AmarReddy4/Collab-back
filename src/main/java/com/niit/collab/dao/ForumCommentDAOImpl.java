@@ -45,7 +45,7 @@ public class ForumCommentDAOImpl implements ForumCommentDAO {
 
 	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Transactional
-	public List<ForumComment> list(int fid) {
+	public List<ForumComment> list(String fid) {
 		Criteria c=sessionFactory.getCurrentSession().createCriteria(ForumComment.class);
 		c.add(Restrictions.eq("forumid", fid));
 		List<ForumComment> list=c.list();
