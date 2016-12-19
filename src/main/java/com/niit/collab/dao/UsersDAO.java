@@ -12,7 +12,6 @@ public interface UsersDAO
 	public boolean delete(Users users);
 	public Users validate(String id,String password);
 	public Users oneuser(String id);
-	
 	public List<Users> list();
 	public List<Users> getuser(String id);
 	public Users profileof(String username);

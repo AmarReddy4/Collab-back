@@ -193,7 +193,7 @@ public class UsersDAOImpl implements UsersDAO
 	@Transactional
 	public Users logout(String id) {
 
-		String hql = "from Users where id=" + "'" + id + "'";
+		String hql = "from Users where username=" + "'" + id + "'";
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		List<Users> list = query.list();
 

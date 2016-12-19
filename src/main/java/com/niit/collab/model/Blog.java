@@ -20,6 +20,14 @@ public class Blog {
 	private int userid;
 	private Date doc;
 	private String content;
+	public Integer bloglike;
+	
+	public Integer getBloglike() {
+		return bloglike;
+	}
+	public void setBloglike(Integer bloglike) {
+		this.bloglike = bloglike;
+	}
 	public int getId() {
 		return id;
 	}

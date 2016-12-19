@@ -16,7 +16,7 @@ import com.niit.collab.model.Users;
 @RestController
 public class LoginController {
 	@Autowired 
-	UsersDAO usersDAO;
+	private UsersDAO usersDAO;
 
 	@GetMapping("/login/{username}/{password}")
 	public ResponseEntity<Users> login( @PathVariable("username") String username,@PathVariable("password") String password ,HttpSession session){
@@ -35,7 +35,7 @@ public class LoginController {
 	}
 	@PostMapping("/logout")
 	public ResponseEntity<Users> logout(HttpSession session){
-		String uid =  (String) session.getAttribute("uid");
+		String uid =  (String) session.getAttribute("username");
 		Users users =usersDAO.logout(uid);
 		users.setStatus('f'); //offline
 		/*usersDAO.save(users);*/

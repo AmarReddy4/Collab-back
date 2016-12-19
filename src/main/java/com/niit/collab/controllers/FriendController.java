@@ -50,6 +50,7 @@ public void sendrequest(@PathVariable("fid") String fid,HttpSession session)
 	friendDAO.save(friend);
 	/*return new ResponseEntity<Friend>(friend,HttpStatus.OK); */
 }
+
 @GetMapping(value="/newrequests")
 public ResponseEntity<List<Friend>> newrequests(HttpSession session){
 	String uid=(String) session.getAttribute("username");
@@ -69,6 +70,7 @@ public void sendfrndrequest(@PathVariable("fid") String fid,HttpSession session)
 	//user.setStatus("Y");
 	//userDAO.saveOrUpdate(user);
 }*/
+
 /*@PostMapping(value="/sendrequest/{fid}")
 public ResponseEntity<Friend> newfriend(Friend friend,@PathVariable("fid") int fid,HttpSession session)
 {
@@ -120,13 +122,16 @@ public ResponseEntity<Friend> acceptFriendFriendRequest(@PathVariable("fid")Stri
 	friend.setStatus('a');
 	friendDAO.saveOrUpdate(friend);
 	return new ResponseEntity<Friend>(friend,HttpStatus.OK);*/
+
+
 private void Update(String fid, String string) {
 	// TODO Auto-generated method stub
 	
 }
 
 @PostMapping(value="/rejectrequest/{uid}")
-public ResponseEntity<Friend> rejectfriend(@PathVariable("uid") String uid,HttpSession session){
+public ResponseEntity<Friend> rejectfriend(@PathVariable("uid") String uid,HttpSession session)
+{
 	String id = (String) session.getAttribute("username");
 	Friend friend =friendDAO.acceptfriend(uid,id);
 	Friend friend1=friendDAO.acceptfriend(id, uid);

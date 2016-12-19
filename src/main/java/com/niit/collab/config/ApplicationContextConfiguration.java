@@ -17,8 +17,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.niit.collab.dao.BlogDAO;
 import com.niit.collab.dao.BlogDAOImpl;
+import com.niit.collab.dao.BlogLikesDAO;
+import com.niit.collab.dao.BlogLikesDAOImpl;
 import com.niit.collab.dao.EventDAO;
 import com.niit.collab.dao.EventDAOImpl;
+import com.niit.collab.dao.ForumCommentDAO;
+import com.niit.collab.dao.ForumCommentDAOImpl;
 import com.niit.collab.dao.ForumDAO;
 import com.niit.collab.dao.ForumDAOImpl;
 import com.niit.collab.dao.FriendDAO;
@@ -28,8 +32,10 @@ import com.niit.collab.dao.JobDAOImpl;
 import com.niit.collab.dao.UsersDAO;
 import com.niit.collab.dao.UsersDAOImpl;
 import com.niit.collab.model.Blog;
+import com.niit.collab.model.BlogLikes;
 import com.niit.collab.model.Event;
 import com.niit.collab.model.Forum;
+import com.niit.collab.model.ForumComment;
 import com.niit.collab.model.Friend;
 import com.niit.collab.model.Job;
 import com.niit.collab.model.Users;
@@ -69,9 +75,11 @@ public SessionFactory getSessionFactory(DataSource dataSource){
 	sessionBuilder.addAnnotatedClass(Users.class);
 	sessionBuilder.addAnnotatedClass(Event.class);
 	sessionBuilder.addAnnotatedClass(Forum.class);
+	sessionBuilder.addAnnotatedClass(ForumComment.class);
 	sessionBuilder.addAnnotatedClass(Job.class);
 	sessionBuilder.addAnnotatedClass(Friend.class);
 	sessionBuilder.addAnnotatedClass(Friend.class);
+	sessionBuilder.addAnnotatedClass(BlogLikes.class);
 	return sessionBuilder.buildSessionFactory();
 	
 }
@@ -109,6 +117,12 @@ public ForumDAO getForumDAO(SessionFactory sessionFactory){
 	return new ForumDAOImpl(sessionFactory);
 }
 @Autowired
+@Bean(name="forumCommentDAO")
+public ForumCommentDAO getForumCommentDAO(SessionFactory sessionFactory){
+	
+	return new ForumCommentDAOImpl(sessionFactory);
+}
+@Autowired
 @Bean(name="friendDAO")
 public FriendDAO getFriendDAO(SessionFactory sessionFactory){
 	
@@ -119,5 +133,10 @@ public FriendDAO getFriendDAO(SessionFactory sessionFactory){
 public JobDAO getJobDAO(SessionFactory sessionFactory){
 	
 	return new JobDAOImpl(sessionFactory);
+}
+@Autowired
+@Bean(name="blogLikesDAO")
+public BlogLikesDAO getBlogLikesDAO(SessionFactory sessionFactory){
+	return new BlogLikesDAOImpl(sessionFactory);
 }
 }

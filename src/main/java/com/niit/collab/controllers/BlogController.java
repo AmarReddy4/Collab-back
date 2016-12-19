@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController; 
 
 import com.niit.collab.dao.BlogDAO;
+import com.niit.collab.dao.BlogLikesDAO;
 import com.niit.collab.model.Blog;
+import com.niit.collab.model.BlogLikes;
 
 @RestController
 public class BlogController {
 @Autowired
 private BlogDAO blogDAO;
+@Autowired
+private BlogLikesDAO blogLikesDAO;
 
 
 @PostMapping(value="/createblog")
@@ -40,6 +44,32 @@ public ResponseEntity<List<Blog>> listblog(){
 	List<Blog> blog =blogDAO.list();
 	return new ResponseEntity<List<Blog>>(blog,HttpStatus.OK);
 }
+
+@PostMapping(value="/likeblog/{blogid}")
+public ResponseEntity<Blog> likeblog(BlogLikes blogLikes,@PathVariable("blogid") int blogid,HttpSession session){
+	int uid=(Integer) session.getAttribute("uid");
+	blogLikes.setBlogid(blogid);
+	blogLikes.setUserid(uid);
+	blogLikes.setLikes("like");
+	blogLikesDAO.saveOrUpdate(blogLikes);
+	List<BlogLikes> list=blogLikesDAO.bloglist(blogid);
+	Blog blog=blogDAO.get(blogid);
+	blog.setBloglike(list.size());
+	blogDAO.saveOrUpdate(blog);
+	return new ResponseEntity<Blog>(HttpStatus.OK);
+}
+@DeleteMapping(value="/unlikeblog/{blogid}")
+public ResponseEntity<Blog> unlike(@PathVariable("blogid") int blogid,HttpSession session){
+	int uid=(Integer) session.getAttribute("uid");
+	BlogLikes blogLikes=blogLikesDAO.list(uid, blogid);
+	blogLikesDAO.delete(blogLikes);
+	List<BlogLikes> list=blogLikesDAO.bloglist(blogid);
+	Blog blog=blogDAO.get(blogid);
+	blog.setBloglike(list.size());
+	blogDAO.saveOrUpdate(blog);
+	return new ResponseEntity<Blog>(HttpStatus.OK);
+}
+
 @DeleteMapping(value="/deleteblog/{blogid}")
 public ResponseEntity<Blog> deleteblog(Blog blog,@PathVariable("blogid") int blogid){
 	Blog blog1=blogDAO.get(blogid);

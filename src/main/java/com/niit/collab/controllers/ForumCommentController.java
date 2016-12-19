@@ -24,8 +24,8 @@ public class ForumCommentController {
 	private ForumCommentDAO forumCommentDAO;
 	
 	@PostMapping(value="/commentforum/{fid}")
-	public ResponseEntity<ForumComment> forumcomment(@RequestBody ForumComment forumcomment,HttpSession session,@PathVariable("fid") String fid){
-		String uid=(String) session.getAttribute("username");
+	public ResponseEntity<ForumComment> forumcomment(@RequestBody ForumComment forumcomment,HttpSession session,@PathVariable("fid") int fid){
+		Integer uid=(Integer) session.getAttribute("uid");
 		forumcomment.setForumid(fid);
 		forumcomment.setUserid(uid);
 		forumcomment.setCommenttime(new Date());
@@ -35,7 +35,7 @@ public class ForumCommentController {
 	}
 	
 	@GetMapping(value="/getforumcomment/{fid}")
-	public ResponseEntity<List<ForumComment>> getcomment(@PathVariable("fid") String fid){
+	public ResponseEntity<List<ForumComment>> getcomment(@PathVariable("fid") int fid){
 		List<ForumComment> comments =forumCommentDAO.list(fid);
 		return new ResponseEntity<List<ForumComment>>(comments,HttpStatus.OK);
 	}
